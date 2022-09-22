@@ -1,0 +1,2 @@
+- [] Implement fuzzy search
+- [x] Handle errors
