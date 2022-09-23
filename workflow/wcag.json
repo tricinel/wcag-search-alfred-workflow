@@ -1,457 +1,457 @@
 [
   {
     "id": "1.1 ",
-    "href": "text-alternatives",
+    "slug": "text-alternatives",
     "title": "Text Alternatives"
   },
   {
     "id": "1.1.1 ",
-    "href": "non-text-content",
+    "slug": "non-text-content",
     "title": "Non-text Content"
   },
   {
     "id": "1.2 ",
-    "href": "time-based-media",
+    "slug": "time-based-media",
     "title": "Time-based Media"
   },
   {
     "id": "1.2.1 ",
-    "href": "audio-only-and-video-only-prerecorded",
+    "slug": "audio-only-and-video-only-prerecorded",
     "title": "Audio-only and Video-only (Prerecorded)"
   },
   {
     "id": "1.2.2 ",
-    "href": "captions-prerecorded",
+    "slug": "captions-prerecorded",
     "title": "Captions (Prerecorded)"
   },
   {
     "id": "1.2.3 ",
-    "href": "audio-description-or-media-alternative-prerecorded",
+    "slug": "audio-description-or-media-alternative-prerecorded",
     "title": "Audio Description or Media Alternative (Prerecorded)"
   },
   {
     "id": "1.2.4 ",
-    "href": "captions-live",
+    "slug": "captions-live",
     "title": "Captions (Live)"
   },
   {
     "id": "1.2.5 ",
-    "href": "audio-description-prerecorded",
+    "slug": "audio-description-prerecorded",
     "title": "Audio Description (Prerecorded)"
   },
   {
     "id": "1.2.6 ",
-    "href": "sign-language-prerecorded",
+    "slug": "sign-language-prerecorded",
     "title": "Sign Language (Prerecorded)"
   },
   {
     "id": "1.2.7 ",
-    "href": "extended-audio-description-prerecorded",
+    "slug": "extended-audio-description-prerecorded",
     "title": "Extended Audio Description (Prerecorded)"
   },
   {
     "id": "1.2.8 ",
-    "href": "media-alternative-prerecorded",
+    "slug": "media-alternative-prerecorded",
     "title": "Media Alternative (Prerecorded)"
   },
   {
     "id": "1.2.9 ",
-    "href": "audio-only-live",
+    "slug": "audio-only-live",
     "title": "Audio-only (Live)"
   },
   {
     "id": "1.3 ",
-    "href": "adaptable",
+    "slug": "adaptable",
     "title": "Adaptable"
   },
   {
     "id": "1.3.1 ",
-    "href": "info-and-relationships",
+    "slug": "info-and-relationships",
     "title": "Info and Relationships"
   },
   {
     "id": "1.3.2 ",
-    "href": "meaningful-sequence",
+    "slug": "meaningful-sequence",
     "title": "Meaningful Sequence"
   },
   {
     "id": "1.3.3 ",
-    "href": "sensory-characteristics",
+    "slug": "sensory-characteristics",
     "title": "Sensory Characteristics"
   },
   {
     "id": "1.3.4 ",
-    "href": "orientation",
+    "slug": "orientation",
     "title": "Orientation"
   },
   {
     "id": "1.3.5 ",
-    "href": "identify-input-purpose",
+    "slug": "identify-input-purpose",
     "title": "Identify Input Purpose"
   },
   {
     "id": "1.3.6 ",
-    "href": "identify-purpose",
+    "slug": "identify-purpose",
     "title": "Identify Purpose"
   },
   {
     "id": "1.4 ",
-    "href": "distinguishable",
+    "slug": "distinguishable",
     "title": "Distinguishable"
   },
   {
     "id": "1.4.1 ",
-    "href": "use-of-color",
+    "slug": "use-of-color",
     "title": "Use of Color"
   },
   {
     "id": "1.4.2 ",
-    "href": "audio-control",
+    "slug": "audio-control",
     "title": "Audio Control"
   },
   {
     "id": "1.4.3 ",
-    "href": "contrast-minimum",
+    "slug": "contrast-minimum",
     "title": "Contrast (Minimum)"
   },
   {
     "id": "1.4.4 ",
-    "href": "resize-text",
+    "slug": "resize-text",
     "title": "Resize text"
   },
   {
     "id": "1.4.5 ",
-    "href": "images-of-text",
+    "slug": "images-of-text",
     "title": "Images of Text"
   },
   {
     "id": "1.4.6 ",
-    "href": "contrast-enhanced",
+    "slug": "contrast-enhanced",
     "title": "Contrast (Enhanced)"
   },
   {
     "id": "1.4.7 ",
-    "href": "low-or-no-background-audio",
+    "slug": "low-or-no-background-audio",
     "title": "Low or No Background Audio"
   },
   {
     "id": "1.4.8 ",
-    "href": "visual-presentation",
+    "slug": "visual-presentation",
     "title": "Visual Presentation"
   },
   {
     "id": "1.4.9 ",
-    "href": "images-of-text-no-exception",
+    "slug": "images-of-text-no-exception",
     "title": "Images of Text (No Exception)"
   },
   {
     "id": "1.4.10 ",
-    "href": "reflow",
+    "slug": "reflow",
     "title": "Reflow"
   },
   {
     "id": "1.4.11 ",
-    "href": "non-text-contrast",
+    "slug": "non-text-contrast",
     "title": "Non-text Contrast"
   },
   {
     "id": "1.4.12 ",
-    "href": "text-spacing",
+    "slug": "text-spacing",
     "title": "Text Spacing"
   },
   {
     "id": "1.4.13 ",
-    "href": "content-on-hover-or-focus",
+    "slug": "content-on-hover-or-focus",
     "title": "Content on Hover or Focus"
   },
   {
     "id": "2.1 ",
-    "href": "keyboard-accessible",
+    "slug": "keyboard-accessible",
     "title": "Keyboard Accessible"
   },
   {
     "id": "2.1.1 ",
-    "href": "keyboard",
+    "slug": "keyboard",
     "title": "Keyboard"
   },
   {
     "id": "2.1.2 ",
-    "href": "no-keyboard-trap",
+    "slug": "no-keyboard-trap",
     "title": "No Keyboard Trap"
   },
   {
     "id": "2.1.3 ",
-    "href": "keyboard-no-exception",
+    "slug": "keyboard-no-exception",
     "title": "Keyboard (No Exception)"
   },
   {
     "id": "2.1.4 ",
-    "href": "character-key-shortcuts",
+    "slug": "character-key-shortcuts",
     "title": "Character Key Shortcuts"
   },
   {
     "id": "2.2 ",
-    "href": "enough-time",
+    "slug": "enough-time",
     "title": "Enough Time"
   },
   {
     "id": "2.2.1 ",
-    "href": "timing-adjustable",
+    "slug": "timing-adjustable",
     "title": "Timing Adjustable"
   },
   {
     "id": "2.2.2 ",
-    "href": "pause-stop-hide",
+    "slug": "pause-stop-hide",
     "title": "Pause, Stop, Hide"
   },
   {
     "id": "2.2.3 ",
-    "href": "no-timing",
+    "slug": "no-timing",
     "title": "No Timing"
   },
   {
     "id": "2.2.4 ",
-    "href": "interruptions",
+    "slug": "interruptions",
     "title": "Interruptions"
   },
   {
     "id": "2.2.5 ",
-    "href": "re-authenticating",
+    "slug": "re-authenticating",
     "title": "Re-authenticating"
   },
   {
     "id": "2.2.6 ",
-    "href": "timeouts",
+    "slug": "timeouts",
     "title": "Timeouts"
   },
   {
     "id": "2.3 ",
-    "href": "seizures-and-physical-reactions",
+    "slug": "seizures-and-physical-reactions",
     "title": "Seizures and Physical Reactions"
   },
   {
     "id": "2.3.1 ",
-    "href": "three-flashes-or-below-threshold",
+    "slug": "three-flashes-or-below-threshold",
     "title": "Three Flashes or Below Threshold"
   },
   {
     "id": "2.3.2 ",
-    "href": "three-flashes",
+    "slug": "three-flashes",
     "title": "Three Flashes"
   },
   {
     "id": "2.3.3 ",
-    "href": "animation-from-interactions",
+    "slug": "animation-from-interactions",
     "title": "Animation from Interactions"
   },
   {
     "id": "2.4 ",
-    "href": "navigable",
+    "slug": "navigable",
     "title": "Navigable"
   },
   {
     "id": "2.4.1 ",
-    "href": "bypass-blocks",
+    "slug": "bypass-blocks",
     "title": "Bypass Blocks"
   },
   {
     "id": "2.4.2 ",
-    "href": "page-titled",
+    "slug": "page-titled",
     "title": "Page Titled"
   },
   {
     "id": "2.4.3 ",
-    "href": "focus-order",
+    "slug": "focus-order",
     "title": "Focus Order"
   },
   {
     "id": "2.4.4 ",
-    "href": "link-purpose-in-context",
+    "slug": "link-purpose-in-context",
     "title": "Link Purpose (In Context)"
   },
   {
     "id": "2.4.5 ",
-    "href": "multiple-ways",
+    "slug": "multiple-ways",
     "title": "Multiple Ways"
   },
   {
     "id": "2.4.6 ",
-    "href": "headings-and-labels",
+    "slug": "headings-and-labels",
     "title": "Headings and Labels"
   },
   {
     "id": "2.4.7 ",
-    "href": "focus-visible",
+    "slug": "focus-visible",
     "title": "Focus Visible"
   },
   {
     "id": "2.4.8 ",
-    "href": "location",
+    "slug": "location",
     "title": "Location"
   },
   {
     "id": "2.4.9 ",
-    "href": "link-purpose-link-only",
+    "slug": "link-purpose-link-only",
     "title": "Link Purpose (Link Only)"
   },
   {
     "id": "2.4.10 ",
-    "href": "section-headings",
+    "slug": "section-headings",
     "title": "Section Headings"
   },
   {
     "id": "2.5 ",
-    "href": "input-modalities",
+    "slug": "input-modalities",
     "title": "Input Modalities"
   },
   {
     "id": "2.5.1 ",
-    "href": "pointer-gestures",
+    "slug": "pointer-gestures",
     "title": "Pointer Gestures"
   },
   {
     "id": "2.5.2 ",
-    "href": "pointer-cancellation",
+    "slug": "pointer-cancellation",
     "title": "Pointer Cancellation"
   },
   {
     "id": "2.5.3 ",
-    "href": "label-in-name",
+    "slug": "label-in-name",
     "title": "Label in Name"
   },
   {
     "id": "2.5.4 ",
-    "href": "motion-actuation",
+    "slug": "motion-actuation",
     "title": "Motion Actuation"
   },
   {
     "id": "2.5.5 ",
-    "href": "target-size",
+    "slug": "target-size",
     "title": "Target Size"
   },
   {
     "id": "2.5.6 ",
-    "href": "concurrent-input-mechanisms",
+    "slug": "concurrent-input-mechanisms",
     "title": "Concurrent Input Mechanisms"
   },
   {
     "id": "3.1 ",
-    "href": "readable",
+    "slug": "readable",
     "title": "Readable"
   },
   {
     "id": "3.1.1 ",
-    "href": "language-of-page",
+    "slug": "language-of-page",
     "title": "Language of Page"
   },
   {
     "id": "3.1.2 ",
-    "href": "language-of-parts",
+    "slug": "language-of-parts",
     "title": "Language of Parts"
   },
   {
     "id": "3.1.3 ",
-    "href": "unusual-words",
+    "slug": "unusual-words",
     "title": "Unusual Words"
   },
   {
     "id": "3.1.4 ",
-    "href": "abbreviations",
+    "slug": "abbreviations",
     "title": "Abbreviations"
   },
   {
     "id": "3.1.5 ",
-    "href": "reading-level",
+    "slug": "reading-level",
     "title": "Reading Level"
   },
   {
     "id": "3.1.6 ",
-    "href": "pronunciation",
+    "slug": "pronunciation",
     "title": "Pronunciation"
   },
   {
     "id": "3.2 ",
-    "href": "predictable",
+    "slug": "predictable",
     "title": "Predictable"
   },
   {
     "id": "3.2.1 ",
-    "href": "on-focus",
+    "slug": "on-focus",
     "title": "On Focus"
   },
   {
     "id": "3.2.2 ",
-    "href": "on-input",
+    "slug": "on-input",
     "title": "On Input"
   },
   {
     "id": "3.2.3 ",
-    "href": "consistent-navigation",
+    "slug": "consistent-navigation",
     "title": "Consistent Navigation"
   },
   {
     "id": "3.2.4 ",
-    "href": "consistent-identification",
+    "slug": "consistent-identification",
     "title": "Consistent Identification"
   },
   {
     "id": "3.2.5 ",
-    "href": "change-on-request",
+    "slug": "change-on-request",
     "title": "Change on Request"
   },
   {
     "id": "3.3 ",
-    "href": "input-assistance",
+    "slug": "input-assistance",
     "title": "Input Assistance"
   },
   {
     "id": "3.3.1 ",
-    "href": "error-identification",
+    "slug": "error-identification",
     "title": "Error Identification"
   },
   {
     "id": "3.3.2 ",
-    "href": "labels-or-instructions",
+    "slug": "labels-or-instructions",
     "title": "Labels or Instructions"
   },
   {
     "id": "3.3.3 ",
-    "href": "error-suggestion",
+    "slug": "error-suggestion",
     "title": "Error Suggestion"
   },
   {
     "id": "3.3.4 ",
-    "href": "error-prevention-legal-financial-data",
+    "slug": "error-prevention-legal-financial-data",
     "title": "Error Prevention (Legal, Financial, Data)"
   },
   {
     "id": "3.3.5 ",
-    "href": "help",
+    "slug": "help",
     "title": "Help"
   },
   {
     "id": "3.3.6 ",
-    "href": "error-prevention-all",
+    "slug": "error-prevention-all",
     "title": "Error Prevention (All)"
   },
   {
     "id": "4.1 ",
-    "href": "compatible",
+    "slug": "compatible",
     "title": "Compatible"
   },
   {
     "id": "4.1.1 ",
-    "href": "parsing",
+    "slug": "parsing",
     "title": "Parsing"
   },
   {
     "id": "4.1.2 ",
-    "href": "name-role-value",
+    "slug": "name-role-value",
     "title": "Name, Role, Value"
   },
   {
     "id": "4.1.3 ",
-    "href": "status-messages",
+    "slug": "status-messages",
     "title": "Status Messages"
   }
 ]

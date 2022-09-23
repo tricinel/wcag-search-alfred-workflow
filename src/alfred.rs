@@ -1,7 +1,7 @@
 use anyhow::Error;
 use powerpack::{Icon, Item};
 
-use crate::loader::Criterion;
+use crate::loader::Link;
 
 const BASE_URL: &str = "https://www.w3.org/WAI/WCAG21/Understanding";
 
@@ -22,11 +22,11 @@ pub fn not_found(query: &str) -> Item {
         .icon(Icon::with_image("warn.png"))
 }
 
-/// Converts a WCAG criterion from JSON to an Alfred item.
-pub fn to_item(json: Criterion) -> Item {
+/// Converts a WCAG link from JSON to an Alfred item.
+pub fn to_item(json: Link) -> Item {
     Item::new(json.title)
-        .subtitle(format!("Open {}/{} in your browser", BASE_URL, json.href))
-        .arg(format!("{}/{}", BASE_URL, json.href))
+        .subtitle(format!("Open {}/{} in your browser", BASE_URL, json.slug))
+        .arg(format!("{}/{}", BASE_URL, json.slug))
 }
 
 /// Convert an error to an Alfred item and include debug information.

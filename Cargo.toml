@@ -12,7 +12,6 @@ either = "1.8.0"
 powerpack = { version = "0.4.2", features = ["detach"] }
 serde = { version = "1.0.144", features = ["derive"] }
 serde_json = "1.0.85"
-sublime_fuzzy = "0.7.0"
 
 [profile.release]
 panic = "abort"

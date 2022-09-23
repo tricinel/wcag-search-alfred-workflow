@@ -1,5 +1,6 @@
 mod alfred;
 mod loader;
+mod fuzzy;
 
 use std::env;
 use std::iter;
