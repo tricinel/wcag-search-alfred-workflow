@@ -3,9 +3,9 @@ use std::fs;
 use anyhow::Result;
 use serde::Deserialize;
 
-use crate::fuzzy::has_match;
+use crate::fuzzy::{fuzzy_score, ScoredItem};
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, PartialEq, Clone, Debug)]
 pub struct Link {
     pub id: String,
     pub slug: String,
@@ -20,13 +20,21 @@ pub fn get_data(file_path: &str) -> Result<Vec<Link>> {
 }
 
 pub fn search(query: &str, items: Vec<Link>) -> Option<Vec<Link>> {
-    let items: Vec<Link> = items
+    let mut items: Vec<ScoredItem> = items
         .into_iter()
-        .filter(|link| has_match(&link.title, &query))
+        .filter_map(|link| {
+            let item = fuzzy_score(link, query);
+            if item.score > 0 {
+                Some(item)
+            } else {
+                None
+            }
+        })
         .collect();
 
     if items.len() > 0 {
-        Some(items)
+        items.sort_by(|a, b| b.score.cmp(&a.score));
+        Some(items.into_iter().map(|item| item.item).collect())
     } else {
         None
     }

@@ -1,6 +1,7 @@
 mod alfred;
 mod loader;
 mod fuzzy;
+mod scoring;
 
 use std::env;
 use std::iter;

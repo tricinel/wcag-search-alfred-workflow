@@ -1,3 +1,12 @@
+use crate::loader::Link;
+use crate::scoring::Score;
+
+#[derive(Debug, PartialEq, Clone)]
+pub struct ScoredItem {
+    pub item: Link,
+    pub score: i32,
+}
+
 /// Take a word and generate some variations of the spelling.
 /// (c) https://github.com/andrew-johnson-4/misspeller/blob/master/src/lib.rs
 fn typos(str: &str) -> Vec<String> {
@@ -30,22 +39,22 @@ fn typos(str: &str) -> Vec<String> {
         }
     }
 
+    typos.sort();
+    typos.dedup();
     typos
 }
 
-pub fn has_match(target: &str, pattern: &str) -> bool {
-    let matched = fuzzy_match(target, pattern);
-    matched > 0
-}
+pub fn fuzzy_score(item: Link, query: &str) -> ScoredItem {
+    let query = query.trim().to_ascii_lowercase();
 
-pub fn fuzzy_match(target: &str, pattern: &str) -> usize {
-    let haystack = target.to_lowercase();
-    let needle = pattern.to_lowercase();
-
-    typos(&needle)
+    let score: i32 = typos(&query)
         .into_iter()
-        .filter(|word| haystack.contains(word))
-        .count()
+        .map(|variation| {
+            Score::new(&item.title, &variation)
+        })
+        .fold(0, |sum, score| sum + score.score);
+
+    ScoredItem { item, score }
 }
 
 #[cfg(test)]
@@ -53,13 +62,17 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_has_match() {
-        assert_eq!(has_match("Headings and Labels", "label"), true);
-        assert_eq!(has_match("Headings and Labels", "lable"), true);
-        assert_eq!(has_match("Headings and Labels", "head"), true);
-        assert_eq!(has_match("Headings and Labels", "hedaings"), true);
-        assert_eq!(has_match("Headings and Labels", "keyboard"), false);
-        assert_eq!(has_match("Headings and Labels", "kebyoard"), false);
+    fn test_fuzzy_score() {
+        let link = Link {
+            id: String::from("1"),
+            slug: String::from("label"),
+            title: String::from("Label"),
+        };
+        let scored_item = ScoredItem {
+            item: link.clone(),
+            score: 10,
+        };
+        assert_eq!(fuzzy_score(link, "label"), scored_item);
     }
 
     #[test]
@@ -67,53 +80,52 @@ mod tests {
         assert_eq!(
             typos("label"),
             vec![
-                "albel", "lbael", "laebl", "lable", "aabel", "babel", "cabel", "dabel", "eabel",
-                "fabel", "gabel", "habel", "iabel", "jabel", "kabel", "label", "mabel", "nabel",
-                "oabel", "pabel", "qabel", "rabel", "sabel", "tabel", "uabel", "vabel", "wabel",
-                "xabel", "yabel", "zabel", "label", "lbbel", "lcbel", "ldbel", "lebel", "lfbel",
-                "lgbel", "lhbel", "libel", "ljbel", "lkbel", "llbel", "lmbel", "lnbel", "lobel",
-                "lpbel", "lqbel", "lrbel", "lsbel", "ltbel", "lubel", "lvbel", "lwbel", "lxbel",
-                "lybel", "lzbel", "laael", "label", "lacel", "ladel", "laeel", "lafel", "lagel",
-                "lahel", "laiel", "lajel", "lakel", "lalel", "lamel", "lanel", "laoel", "lapel",
-                "laqel", "larel", "lasel", "latel", "lauel", "lavel", "lawel", "laxel", "layel",
-                "lazel", "labal", "labbl", "labcl", "labdl", "label", "labfl", "labgl", "labhl",
-                "labil", "labjl", "labkl", "labll", "labml", "labnl", "labol", "labpl", "labql",
-                "labrl", "labsl", "labtl", "labul", "labvl", "labwl", "labxl", "labyl", "labzl",
-                "labea", "labeb", "labec", "labed", "labee", "labef", "labeg", "labeh", "labei",
-                "labej", "labek", "label", "labem", "laben", "labeo", "labep", "labeq", "laber",
-                "labes", "labet", "labeu", "labev", "labew", "labex", "labey", "labez"
+                "aabel", "albel", "babel", "cabel", "dabel", "eabel", "fabel", "gabel", "habel",
+                "iabel", "jabel", "kabel", "laael", "labal", "labbl", "labcl", "labdl", "labea",
+                "labeb", "labec", "labed", "labee", "labef", "labeg", "labeh", "labei", "labej",
+                "labek", "label", "labem", "laben", "labeo", "labep", "labeq", "laber", "labes",
+                "labet", "labeu", "labev", "labew", "labex", "labey", "labez", "labfl", "labgl",
+                "labhl", "labil", "labjl", "labkl", "lable", "labll", "labml", "labnl", "labol",
+                "labpl", "labql", "labrl", "labsl", "labtl", "labul", "labvl", "labwl", "labxl",
+                "labyl", "labzl", "lacel", "ladel", "laebl", "laeel", "lafel", "lagel", "lahel",
+                "laiel", "lajel", "lakel", "lalel", "lamel", "lanel", "laoel", "lapel", "laqel",
+                "larel", "lasel", "latel", "lauel", "lavel", "lawel", "laxel", "layel", "lazel",
+                "lbael", "lbbel", "lcbel", "ldbel", "lebel", "lfbel", "lgbel", "lhbel", "libel",
+                "ljbel", "lkbel", "llbel", "lmbel", "lnbel", "lobel", "lpbel", "lqbel", "lrbel",
+                "lsbel", "ltbel", "lubel", "lvbel", "lwbel", "lxbel", "lybel", "lzbel", "mabel",
+                "nabel", "oabel", "pabel", "qabel", "rabel", "sabel", "tabel", "uabel", "vabel",
+                "wabel", "xabel", "yabel", "zabel"
             ]
         );
         assert_eq!(
             typos("heading"),
             vec![
-                "ehading", "haeding", "hedaing", "heaidng", "headnig", "headign", "aeading",
-                "beading", "ceading", "deading", "eeading", "feading", "geading", "heading",
-                "ieading", "jeading", "keading", "leading", "meading", "neading", "oeading",
-                "peading", "qeading", "reading", "seading", "teading", "ueading", "veading",
-                "weading", "xeading", "yeading", "zeading", "haading", "hbading", "hcading",
-                "hdading", "heading", "hfading", "hgading", "hhading", "hiading", "hjading",
-                "hkading", "hlading", "hmading", "hnading", "hoading", "hpading", "hqading",
-                "hrading", "hsading", "htading", "huading", "hvading", "hwading", "hxading",
-                "hyading", "hzading", "heading", "hebding", "hecding", "hedding", "heeding",
-                "hefding", "hegding", "hehding", "heiding", "hejding", "hekding", "helding",
-                "hemding", "hending", "heoding", "hepding", "heqding", "herding", "hesding",
-                "hetding", "heuding", "hevding", "hewding", "hexding", "heyding", "hezding",
-                "heaaing", "heabing", "heacing", "heading", "heaeing", "heafing", "heaging",
-                "heahing", "heaiing", "heajing", "heaking", "healing", "heaming", "heaning",
-                "heaoing", "heaping", "heaqing", "hearing", "heasing", "heating", "heauing",
-                "heaving", "heawing", "heaxing", "heaying", "heazing", "headang", "headbng",
-                "headcng", "headdng", "headeng", "headfng", "headgng", "headhng", "heading",
-                "headjng", "headkng", "headlng", "headmng", "headnng", "headong", "headpng",
+                "aeading", "beading", "ceading", "deading", "eeading", "ehading", "feading",
+                "geading", "haading", "haeding", "hbading", "hcading", "hdading", "heaaing",
+                "heabing", "heacing", "headang", "headbng", "headcng", "headdng", "headeng",
+                "headfng", "headgng", "headhng", "headiag", "headibg", "headicg", "headidg",
+                "headieg", "headifg", "headigg", "headign", "headihg", "headiig", "headijg",
+                "headikg", "headilg", "headimg", "headina", "headinb", "headinc", "headind",
+                "headine", "headinf", "heading", "headinh", "headini", "headinj", "headink",
+                "headinl", "headinm", "headinn", "headino", "headinp", "headinq", "headinr",
+                "headins", "headint", "headinu", "headinv", "headinw", "headinx", "headiny",
+                "headinz", "headiog", "headipg", "headiqg", "headirg", "headisg", "headitg",
+                "headiug", "headivg", "headiwg", "headixg", "headiyg", "headizg", "headjng",
+                "headkng", "headlng", "headmng", "headnig", "headnng", "headong", "headpng",
                 "headqng", "headrng", "headsng", "headtng", "headung", "headvng", "headwng",
-                "headxng", "headyng", "headzng", "headiag", "headibg", "headicg", "headidg",
-                "headieg", "headifg", "headigg", "headihg", "headiig", "headijg", "headikg",
-                "headilg", "headimg", "heading", "headiog", "headipg", "headiqg", "headirg",
-                "headisg", "headitg", "headiug", "headivg", "headiwg", "headixg", "headiyg",
-                "headizg", "headina", "headinb", "headinc", "headind", "headine", "headinf",
-                "heading", "headinh", "headini", "headinj", "headink", "headinl", "headinm",
-                "headinn", "headino", "headinp", "headinq", "headinr", "headins", "headint",
-                "headinu", "headinv", "headinw", "headinx", "headiny", "headinz"
+                "headxng", "headyng", "headzng", "heaeing", "heafing", "heaging", "heahing",
+                "heaidng", "heaiing", "heajing", "heaking", "healing", "heaming", "heaning",
+                "heaoing", "heaping", "heaqing", "hearing", "heasing", "heating", "heauing",
+                "heaving", "heawing", "heaxing", "heaying", "heazing", "hebding", "hecding",
+                "hedaing", "hedding", "heeding", "hefding", "hegding", "hehding", "heiding",
+                "hejding", "hekding", "helding", "hemding", "hending", "heoding", "hepding",
+                "heqding", "herding", "hesding", "hetding", "heuding", "hevding", "hewding",
+                "hexding", "heyding", "hezding", "hfading", "hgading", "hhading", "hiading",
+                "hjading", "hkading", "hlading", "hmading", "hnading", "hoading", "hpading",
+                "hqading", "hrading", "hsading", "htading", "huading", "hvading", "hwading",
+                "hxading", "hyading", "hzading", "ieading", "jeading", "keading", "leading",
+                "meading", "neading", "oeading", "peading", "qeading", "reading", "seading",
+                "teading", "ueading", "veading", "weading", "xeading", "yeading", "zeading"
             ]
         );
     }
