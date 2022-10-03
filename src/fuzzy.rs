@@ -47,14 +47,22 @@ fn typos(str: &str) -> Vec<String> {
 pub fn fuzzy_score(item: Link, query: &str) -> ScoredItem {
     let query = query.trim().to_ascii_lowercase();
 
-    let score: i32 = typos(&query)
-        .into_iter()
-        .map(|variation| {
-            Score::new(&item.title, &variation)
-        })
-        .fold(0, |sum, score| sum + score.score);
+    // If the query is matched in any way, we return the Score
+    let score = Score::new(&item.title, &query, false);
 
-    ScoredItem { item, score }
+    if score.score > 0 {
+        ScoredItem {
+            item,
+            score: score.score,
+        }
+    } else {
+        let score: i32 = typos(&query)
+            .into_iter()
+            .map(|variation| Score::new(&item.title, &variation, true))
+            .fold(0, |sum, score| sum + score.score);
+
+        ScoredItem { item, score }
+    }
 }
 
 #[cfg(test)]
@@ -63,16 +71,39 @@ mod tests {
 
     #[test]
     fn test_fuzzy_score() {
-        let link = Link {
-            id: String::from("1"),
-            slug: String::from("label"),
-            title: String::from("Label"),
-        };
-        let scored_item = ScoredItem {
-            item: link.clone(),
-            score: 10,
-        };
-        assert_eq!(fuzzy_score(link, "label"), scored_item);
+        {
+            let link = Link {
+                id: String::from("1"),
+                slug: String::from("label"),
+                title: String::from("Label"),
+            };
+            let scored_item = ScoredItem {
+                item: link.clone(),
+                score: 1000,
+            };
+
+            assert_eq!(
+                fuzzy_score(link, "label"),
+                scored_item
+            );
+        }
+        {
+            let link = Link {
+                id: String::from("1"),
+                slug: String::from("label"),
+                title: String::from("Label"),
+            };
+
+            let scored_item = ScoredItem {
+                item: link.clone(),
+                score: 10,
+            };
+
+            assert_eq!(
+                fuzzy_score(link, "albel"),
+                scored_item
+            );
+        }
     }
 
     #[test]

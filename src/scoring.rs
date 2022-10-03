@@ -1,16 +1,19 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Score {
-    pub score_type: Match,
+    pub match_type: Match,
+    pub multiplier: i32,
     pub score: i32,
 }
 
 impl Score {
-    pub fn new(text: &str, query: &str) -> Self {
-        let score_type = match_score(text, query);
+    pub fn new(text: &str, query: &str, is_typo: bool) -> Self {
+        let match_type = match_score(text, query);
+        let multiplier = if is_typo { 1 } else { 100 };
 
         Self {
-            score_type: score_type.clone(),
-            score: to_score(&score_type),
+            match_type: match_type.clone(),
+            multiplier,
+            score: score_with_multiplier(&match_type, multiplier),
         }
     }
 }
@@ -34,28 +37,52 @@ pub fn to_score(score: &Match) -> i32 {
         Match::EndsWith => 5,
         Match::PartiallyContained => 6,
         Match::PartiallyContains => 4,
-        Match::NoMatch => 0
+        Match::NoMatch => 0,
     }
 }
 
+fn score_with_multiplier(match_type: &Match, multiplier: i32) -> i32 {
+    to_score(&match_type) * multiplier
+}
+
 fn starts_with(words: &Vec<&str>, query: &str) -> bool {
-    words.into_iter().filter(|word| word.starts_with(query)).count() > 0
+    words
+        .into_iter()
+        .filter(|word| word.starts_with(query))
+        .count()
+        > 0
 }
 
 fn ends_with(words: &Vec<&str>, query: &str) -> bool {
-    words.into_iter().filter(|word| word.ends_with(query)).count() > 0
+    words
+        .into_iter()
+        .filter(|word| word.ends_with(query))
+        .count()
+        > 0
 }
 
 fn is_contained(words: &Vec<&str>, query: &str) -> bool {
-    words.into_iter().filter(|word| is_exact_match(word, query)).count() > 0
+    words
+        .into_iter()
+        .filter(|word| is_exact_match(word, query))
+        .count()
+        > 0
 }
 
 fn is_partially_contained(words: &Vec<&str>, query: &str) -> bool {
-    words.into_iter().filter(|word| word.contains(query)).count() > 0
+    words
+        .into_iter()
+        .filter(|word| word.contains(query))
+        .count()
+        > 0
 }
 
 fn partially_contains(words: &Vec<&str>, query: &str) -> bool {
-    words.into_iter().filter(|word| query.contains(*word)).count() > 0
+    words
+        .into_iter()
+        .filter(|word| query.contains(*word))
+        .count()
+        > 0
 }
 
 fn is_exact_match(word: &str, query: &str) -> bool {
@@ -107,10 +134,31 @@ mod tests {
         assert_eq!(match_score("label", "label"), Match::Exact);
         assert_eq!(match_score("label and heading", "label"), Match::Contained);
         assert_eq!(match_score("labels", "label"), Match::StartsWith);
-        assert_eq!(match_score("Labels or instructions", "label"), Match::StartsWith);
+        assert_eq!(
+            match_score("Labels or instructions", "label"),
+            Match::StartsWith
+        );
         assert_eq!(match_score("label", "abel"), Match::EndsWith);
         assert_eq!(match_score("capables", "able"), Match::PartiallyContained);
         assert_eq!(match_score("xyz", "abc"), Match::NoMatch);
         assert_eq!(match_score("label", "labels"), Match::PartiallyContains);
+    }
+
+    #[test]
+    fn test_score_multiplier() {
+        assert_eq!(score_with_multiplier(&Match::Exact, 100), 1000);
+        assert_eq!(score_with_multiplier(&Match::Exact, 1), 10);
+    }
+
+    #[test]
+    fn test_new_score() {
+        assert_eq!(
+            Score::new("label", "label", false),
+            Score {
+                match_type: Match::Exact,
+                multiplier: 100,
+                score: 1000,
+            }
+        );
     }
 }
