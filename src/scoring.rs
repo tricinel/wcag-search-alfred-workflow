@@ -25,7 +25,6 @@ pub enum Match {
     StartsWith,
     EndsWith,
     PartiallyContained,
-    PartiallyContains,
     NoMatch,
 }
 
@@ -36,7 +35,6 @@ pub fn to_score(score: &Match) -> i32 {
         Match::StartsWith => 7,
         Match::EndsWith => 5,
         Match::PartiallyContained => 6,
-        Match::PartiallyContains => 4,
         Match::NoMatch => 0,
     }
 }
@@ -77,14 +75,6 @@ fn is_partially_contained(words: &Vec<&str>, query: &str) -> bool {
         > 0
 }
 
-fn partially_contains(words: &Vec<&str>, query: &str) -> bool {
-    words
-        .into_iter()
-        .filter(|word| query.contains(*word))
-        .count()
-        > 0
-}
-
 fn is_exact_match(word: &str, query: &str) -> bool {
     word.contains(query) && word.len() == query.len()
 }
@@ -108,8 +98,6 @@ pub fn match_score(text: &str, query: &str) -> Match {
         Match::EndsWith
     } else if is_partially_contained(&words, &query) {
         Match::PartiallyContained
-    } else if partially_contains(&words, &query) {
-        Match::PartiallyContains
     } else {
         Match::NoMatch
     }
@@ -141,7 +129,7 @@ mod tests {
         assert_eq!(match_score("label", "abel"), Match::EndsWith);
         assert_eq!(match_score("capables", "able"), Match::PartiallyContained);
         assert_eq!(match_score("xyz", "abc"), Match::NoMatch);
-        assert_eq!(match_score("label", "labels"), Match::PartiallyContains);
+        assert_eq!(match_score("Headings and labels", "asdhadsa"), Match::NoMatch);
     }
 
     #[test]
@@ -158,6 +146,22 @@ mod tests {
                 match_type: Match::Exact,
                 multiplier: 100,
                 score: 1000,
+            }
+        );
+        assert_eq!(
+            Score::new("Headings and labels", "asdhadsa", false),
+            Score {
+                match_type: Match::NoMatch,
+                multiplier: 100,
+                score: 0,
+            }
+        );
+        assert_eq!(
+            Score::new("Headings and labels", "asdhadsa", true),
+            Score {
+                match_type: Match::NoMatch,
+                multiplier: 1,
+                score: 0,
             }
         );
     }

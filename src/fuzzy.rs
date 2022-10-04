@@ -104,6 +104,23 @@ mod tests {
                 scored_item
             );
         }
+        {
+            let link = Link {
+                id: String::from("1"),
+                slug: String::from("headings-and-labels"),
+                title: String::from("Headings and labels"),
+            };
+
+            let scored_item = ScoredItem {
+                item: link.clone(),
+                score: 0,
+            };
+
+            assert_eq!(
+                fuzzy_score(link, "asdhadsa"),
+                scored_item
+            );
+        }
     }
 
     #[test]
