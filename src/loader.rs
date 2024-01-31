@@ -32,7 +32,7 @@ pub fn search(query: &str, items: Vec<Link>) -> Option<Vec<Link>> {
         })
         .collect();
 
-    if items.len() > 0 {
+    if !items.is_empty() {
         items.sort_by(|a, b| b.score.cmp(&a.score));
         Some(items.into_iter().map(|item| item.item).collect())
     } else {

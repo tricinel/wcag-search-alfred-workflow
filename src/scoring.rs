@@ -25,7 +25,7 @@ pub enum Match {
     StartsWith,
     EndsWith,
     PartiallyContained,
-    NoMatch,
+    None,
 }
 
 pub fn to_score(score: &Match) -> i32 {
@@ -35,41 +35,41 @@ pub fn to_score(score: &Match) -> i32 {
         Match::StartsWith => 7,
         Match::EndsWith => 5,
         Match::PartiallyContained => 6,
-        Match::NoMatch => 0,
+        Match::None => 0,
     }
 }
 
 fn score_with_multiplier(match_type: &Match, multiplier: i32) -> i32 {
-    to_score(&match_type) * multiplier
+    to_score(match_type) * multiplier
 }
 
-fn starts_with(words: &Vec<&str>, query: &str) -> bool {
+fn starts_with(words: &[&str], query: &str) -> bool {
     words
-        .into_iter()
+        .iter()
         .filter(|word| word.starts_with(query))
         .count()
         > 0
 }
 
-fn ends_with(words: &Vec<&str>, query: &str) -> bool {
+fn ends_with(words: &[&str], query: &str) -> bool {
     words
-        .into_iter()
+        .iter()
         .filter(|word| word.ends_with(query))
         .count()
         > 0
 }
 
-fn is_contained(words: &Vec<&str>, query: &str) -> bool {
+fn is_contained(words: &[&str], query: &str) -> bool {
     words
-        .into_iter()
+        .iter()
         .filter(|word| is_exact_match(word, query))
         .count()
         > 0
 }
 
-fn is_partially_contained(words: &Vec<&str>, query: &str) -> bool {
+fn is_partially_contained(words: &[&str], query: &str) -> bool {
     words
-        .into_iter()
+        .iter()
         .filter(|word| word.contains(query))
         .count()
         > 0
@@ -86,7 +86,7 @@ fn prep_text(text: &str) -> String {
 pub fn match_score(text: &str, query: &str) -> Match {
     let text = prep_text(text);
     let query = prep_text(query);
-    let words: Vec<&str> = text.split(" ").collect();
+    let words: Vec<&str> = text.split_whitespace().collect();
 
     if is_exact_match(&text, &query) {
         Match::Exact
@@ -99,7 +99,7 @@ pub fn match_score(text: &str, query: &str) -> Match {
     } else if is_partially_contained(&words, &query) {
         Match::PartiallyContained
     } else {
-        Match::NoMatch
+        Match::None
     }
 }
 
@@ -114,7 +114,7 @@ mod tests {
         assert_eq!(to_score(&Match::StartsWith), 7);
         assert_eq!(to_score(&Match::EndsWith), 5);
         assert_eq!(to_score(&Match::PartiallyContained), 6);
-        assert_eq!(to_score(&Match::NoMatch), 0);
+        assert_eq!(to_score(&Match::None), 0);
     }
 
     #[test]
@@ -128,8 +128,8 @@ mod tests {
         );
         assert_eq!(match_score("label", "abel"), Match::EndsWith);
         assert_eq!(match_score("capables", "able"), Match::PartiallyContained);
-        assert_eq!(match_score("xyz", "abc"), Match::NoMatch);
-        assert_eq!(match_score("Headings and labels", "asdhadsa"), Match::NoMatch);
+        assert_eq!(match_score("xyz", "abc"), Match::None);
+        assert_eq!(match_score("Headings and labels", "asdhadsa"), Match::None);
     }
 
     #[test]
@@ -151,7 +151,7 @@ mod tests {
         assert_eq!(
             Score::new("Headings and labels", "asdhadsa", false),
             Score {
-                match_type: Match::NoMatch,
+                match_type: Match::None,
                 multiplier: 100,
                 score: 0,
             }
@@ -159,7 +159,7 @@ mod tests {
         assert_eq!(
             Score::new("Headings and labels", "asdhadsa", true),
             Score {
-                match_type: Match::NoMatch,
+                match_type: Match::None,
                 multiplier: 1,
                 score: 0,
             }

@@ -22,7 +22,7 @@ fn main() -> Result<()> {
         Ok(json) => {
             let items = match query.as_deref() {
                 None | Some("") => Either::Left(iter::once(alfred::empty())),
-                Some(query) => match loader::search(&query, json) {
+                Some(query) => match loader::search(query, json) {
                     Some(results) => {
                         let iter = results
                             .into_iter()
