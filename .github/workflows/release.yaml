@@ -1,0 +1,37 @@
+name: build
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: --deny warnings
+
+jobs:
+  release:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: extractions/setup-crate@v1
+        with:
+          owner: rossmacarthur
+          name: powerpack
+
+      - name: Setup Rust
+        run: |
+          rustup set profile minimal
+          rustup toolchain install stable
+          rustup override set stable
+
+      - name: Archive
+        id: archive
+        run: |
+          archive=wcag.alfredworkflow
+          powerpack package
+          mv target/workflow/wcag.alfredworkflow "$archive"
+          echo "path=$archive" >> $GITHUB_OUTPUT
+
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ steps.archive.outputs.path }}
