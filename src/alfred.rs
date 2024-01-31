@@ -3,11 +3,11 @@ use powerpack::{Icon, Item};
 
 use crate::loader::Link;
 
-const BASE_URL: &str = "https://www.w3.org/WAI/WCAG21/Understanding";
+const BASE_URL: &str = "https://www.w3.org/WAI/WCAG22/Understanding";
 
 /// Returns an Alfred item for when no query has been typed yet.
 pub fn empty() -> Item {
-    Item::new("Search the web accessibility guidelines (WCAG 2.1)")
+    Item::new("Search the web accessibility guidelines (WCAG 2.2)")
         .subtitle("e.g. keyboard. When the search is empty, you can open WCAG in your browser")
         .arg(BASE_URL)
 }

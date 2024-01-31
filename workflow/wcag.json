@@ -1,18 +1,8 @@
 [
   {
-    "id": "1.1 ",
-    "slug": "text-alternatives",
-    "title": "Text Alternatives"
-  },
-  {
     "id": "1.1.1 ",
     "slug": "non-text-content",
     "title": "Non-text Content"
-  },
-  {
-    "id": "1.2 ",
-    "slug": "time-based-media",
-    "title": "Time-based Media"
   },
   {
     "id": "1.2.1 ",
@@ -60,11 +50,6 @@
     "title": "Audio-only (Live)"
   },
   {
-    "id": "1.3 ",
-    "slug": "adaptable",
-    "title": "Adaptable"
-  },
-  {
     "id": "1.3.1 ",
     "slug": "info-and-relationships",
     "title": "Info and Relationships"
@@ -95,11 +80,6 @@
     "title": "Identify Purpose"
   },
   {
-    "id": "1.4 ",
-    "slug": "distinguishable",
-    "title": "Distinguishable"
-  },
-  {
     "id": "1.4.1 ",
     "slug": "use-of-color",
     "title": "Use of Color"
@@ -117,7 +97,7 @@
   {
     "id": "1.4.4 ",
     "slug": "resize-text",
-    "title": "Resize text"
+    "title": "Resize Text"
   },
   {
     "id": "1.4.5 ",
@@ -165,11 +145,6 @@
     "title": "Content on Hover or Focus"
   },
   {
-    "id": "2.1 ",
-    "slug": "keyboard-accessible",
-    "title": "Keyboard Accessible"
-  },
-  {
     "id": "2.1.1 ",
     "slug": "keyboard",
     "title": "Keyboard"
@@ -188,11 +163,6 @@
     "id": "2.1.4 ",
     "slug": "character-key-shortcuts",
     "title": "Character Key Shortcuts"
-  },
-  {
-    "id": "2.2 ",
-    "slug": "enough-time",
-    "title": "Enough Time"
   },
   {
     "id": "2.2.1 ",
@@ -225,11 +195,6 @@
     "title": "Timeouts"
   },
   {
-    "id": "2.3 ",
-    "slug": "seizures-and-physical-reactions",
-    "title": "Seizures and Physical Reactions"
-  },
-  {
     "id": "2.3.1 ",
     "slug": "three-flashes-or-below-threshold",
     "title": "Three Flashes or Below Threshold"
@@ -243,11 +208,6 @@
     "id": "2.3.3 ",
     "slug": "animation-from-interactions",
     "title": "Animation from Interactions"
-  },
-  {
-    "id": "2.4 ",
-    "slug": "navigable",
-    "title": "Navigable"
   },
   {
     "id": "2.4.1 ",
@@ -300,9 +260,19 @@
     "title": "Section Headings"
   },
   {
-    "id": "2.5 ",
-    "slug": "input-modalities",
-    "title": "Input Modalities"
+    "id": "2.4.11 ",
+    "slug": "focus-not-obscured-minimum",
+    "title": "Focus Not Obscured (Minimum)"
+  },
+  {
+    "id": "2.4.12 ",
+    "slug": "focus-not-obscured-enhanced",
+    "title": "Focus Not Obscured (Enhanced)"
+  },
+  {
+    "id": "2.4.13 ",
+    "slug": "focus-appearance",
+    "title": "Focus Appearance"
   },
   {
     "id": "2.5.1 ",
@@ -326,8 +296,8 @@
   },
   {
     "id": "2.5.5 ",
-    "slug": "target-size",
-    "title": "Target Size"
+    "slug": "target-size-enhanced",
+    "title": "Target Size (Enhanced)"
   },
   {
     "id": "2.5.6 ",
@@ -335,9 +305,14 @@
     "title": "Concurrent Input Mechanisms"
   },
   {
-    "id": "3.1 ",
-    "slug": "readable",
-    "title": "Readable"
+    "id": "2.5.7 ",
+    "slug": "dragging-movements",
+    "title": "Dragging Movements"
+  },
+  {
+    "id": "2.5.8 ",
+    "slug": "target-size-minimum",
+    "title": "Target Size (Minimum)"
   },
   {
     "id": "3.1.1 ",
@@ -370,11 +345,6 @@
     "title": "Pronunciation"
   },
   {
-    "id": "3.2 ",
-    "slug": "predictable",
-    "title": "Predictable"
-  },
-  {
     "id": "3.2.1 ",
     "slug": "on-focus",
     "title": "On Focus"
@@ -400,9 +370,9 @@
     "title": "Change on Request"
   },
   {
-    "id": "3.3 ",
-    "slug": "input-assistance",
-    "title": "Input Assistance"
+    "id": "3.2.6 ",
+    "slug": "consistent-help",
+    "title": "Consistent Help"
   },
   {
     "id": "3.3.1 ",
@@ -435,14 +405,24 @@
     "title": "Error Prevention (All)"
   },
   {
-    "id": "4.1 ",
-    "slug": "compatible",
-    "title": "Compatible"
+    "id": "3.3.7 ",
+    "slug": "redundant-entry",
+    "title": "Redundant Entry"
+  },
+  {
+    "id": "3.3.8 ",
+    "slug": "accessible-authentication-minimum",
+    "title": "Accessible Authentication (Minimum)"
+  },
+  {
+    "id": "3.3.9 ",
+    "slug": "accessible-authentication-enhanced",
+    "title": "Accessible Authentication (Enhanced)"
   },
   {
     "id": "4.1.1 ",
     "slug": "parsing",
-    "title": "Parsing"
+    "title": "Parsing (Obsolete and removed)"
   },
   {
     "id": "4.1.2 ",
