@@ -16,7 +16,7 @@ Alfred workflow to search the Web Content Accessibility Guidelines (WCAG).
 
 ### Pre-packaged
 
-Grab the latest release from [the releases page](https://github.com/tricine/wcag-search-alfred-workflow/releases).
+Grab the latest release from [the releases page](https://github.com/tricinel/wcag-search-alfred-workflow/releases).
 
 ### Building from source
 
